@@ -46,6 +46,7 @@ var iPhoneStyle = Class.create({
 		this.clicking = null;
 		this.dragStartPosition = null;
 		this.activeCheckbox = null;
+		this.iPhoneStyleObj = this;
 		
 	  if (Object.isString(this.selector_or_elems)) {
 	    this.elems = $$('#' + this.wrapper + ' ' + this.selector_or_elems);
@@ -58,10 +59,12 @@ var iPhoneStyle = Class.create({
 	setup: function() {
 		/* this is the obj setup in intialize */
 		this.elems.each(function(elt) {
+			/*
 			if (!elt.match('input[type=checkbox]'))
 				return;
 			if (elt.hasClassName(this.statusClass))
 				return;
+			*/
 			
 			var checkBox = new iPhoneCheckBox(elt, this);
 			this.checkBoxes.push(checkBox);
@@ -77,10 +80,9 @@ var iPhoneStyle = Class.create({
 	    checkBox.setSizeOf();
 		
 			checkBox.container.observe('mousedown', this.toggleDown.bindAsEventListener(this, checkBox))
-			//checkBox.container.observe('mouseup', this.toggleUp.bindAsEventListener(this, checkBox));
-			document.observe('mouseup', this.toggleUp.bindAsEventListener(this, checkBox));
+			document.observe('mouseup', this.toggleUp.bindAsEventListener(this));
 			checkBox.container.observe('mousemove', this.moveHandle.bindAsEventListener(this, checkBox));
-		}, this);
+		}, this.iPhoneStyleObj);
 	},
 	
 	moveHandle: function(e) {
@@ -89,9 +91,7 @@ var iPhoneStyle = Class.create({
 		if (this.clicking == checkBox.getHandle()) {
 		   e.stop();
 		   var x = Event.pointerX(e) || e.changedTouches[0].pageX;
-		   if (x != this.dragStartPosition) {
-		     this.dragging = true;
-		   }
+
 		   var p = (x - this.dragStartPosition) / checkBox.rightside;
 		   if (p < 0) { p = 0; }
 		   if (p > 1) { p = 1; }
@@ -108,7 +108,7 @@ var iPhoneStyle = Class.create({
 		e.stop();
 		var arg = $A(arguments);
 		var checkBox = arg.pop();
-		this.activeCheckBox = checkBox;
+		this.activeCheckbox = checkBox;
 		this.clicking = checkBox.getHandle();
 		this.dragStartPosition = Event.pointerX(e) - (Number(checkBox.getHandle().style.left.replace(/px$/, "")) || 0);
 		return false;
@@ -116,29 +116,21 @@ var iPhoneStyle = Class.create({
 		
 	toggleUp: function(e) {
 		var arg = $A(arguments);
-		var checkBox = arg.pop();
-		console.log(checkBox);
-		var elt = checkBox.getInputElt();
-    if (iPhoneStyle.clicking == this.handle) {
+    if (this.clicking) {
+			var elt = this.activeCheckbox.getInputElt();
 			e.stop();
-      if (!iPhoneStyle.dragging) {
-        var is_onstate = elt.checked;
-				if (this.radioButtons) {
-					if (!elt.checked) {
-						this.radioChange(this.activeCheckbox);
-					}
-				} else {
-					elt.writeAttribute('checked', !is_onstate);
+      var is_onstate = elt.checked;
+			if (this.radioButtons) {
+				if (!elt.checked) {
+					this.radioChange(this.activeCheckbox);
 				}
-      } else {
-        var x = Event.pointerX(e) || e.changedTouches[0].pageX;
-        var p = (x - this.dragStartPosition) / checkBox.rightside;
-        elt.writeAttribute('checked', (p >= 0.5));
-      }
-      this.clicking = null;
-      this.dragging = null;	
+			} else {
+				elt.writeAttribute('checked', !is_onstate);
+			}
+			if (this.activeCheckbox != null)
+      	this.change(this.activeCheckbox);
+		  this.clicking = null;
 			this.activeCheckbox = null;
-      this.change(checkBox);
     }
   },
 
@@ -167,12 +159,12 @@ var iPhoneStyle = Class.create({
 	},
 	
 	getCheckboxObj: function(inputElt) {
-		var inputReturn = null;
-		this.checkBoxes.each(function(input) {
-	    if(input.getInputElt().identify() == inputElt.identify())
-	        inputReturn = input;
+		var checkboxObj = null;
+		this.checkBoxes.each(function(checkbox) {
+	    if(checkbox.getInputElt().identify() == inputElt.identify())
+	        checkboxObj = checkbox;
 	 	});
-		return inputReturn;
+		return checkboxObj;
 	},
 
 	change: function(checkBox) {

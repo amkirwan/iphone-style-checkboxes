@@ -41,20 +41,22 @@
     document.observe("dom:loaded", function() {
       new iPhoneStyle({ wrapper: 'first-list', radioButtons: true });
 	  new iPhoneStyle({ wrapper: 'second-list', radioButtons: true });
+	  new iPhoneStyle({ wrapper: 'on-off' });
       new iPhoneStyle({ wrapper: 'css_sized_container', resizeContainer: false, resizeHandle: false } );
       new iPhoneStyle({ wrapper: 'long_tiny', checkedLabel: 'Very Long Text', uncheckedLabel: 'Tiny' });
 
 	  var phone = new iPhoneStyle({ wrapper: 'onchange' });
-	  var checkbox = phone.getCheckboxObj($('onchange').down('#onchange-input'))
+	  var checkboxObj = phone.getCheckboxObj($('onchange-input'));
 	  new PeriodicalExecuter(function(pe) {
-	    phone.toggleChange(checkbox);
+	    phone.toggleChange(checkboxObj);
 		}, 2);
+		
      });
   </script>
   
 </head>
 <body>
-  <h5 style="margin: 0">Radio Buttons</h5>
+  <h5 style="margin: 0">Acts as Radio Buttons</h5>
   <ol id="first-list" class="on_off" style="border: 1px solid #000">
     <li>
       <label class="left" for="on_off">Default</label>
@@ -72,7 +74,7 @@
     </li>
   </ol>
 
-  <h5 style="margin: 0; margin-top: 10px">Another Group of Radio Buttons</h5>
+  <h5 style="margin: 0; margin-top: 10px">Another Group of Acts as Radio Buttons</h5>
   <ol id="second-list" class="on_off" style="border: 1px solid blue">
     <li>
       <label class="left" for="on_off">Default</label>
@@ -90,17 +92,24 @@
     </li>
   </ol>
 
+  <ol id="on-off" class="on_off" >
+    <li>
+      <label class="left" for="on_off">Simple On Off checkbox</label>
+      <input type="checkbox" id="on_off" />
+    </li>
+  </ol>
+
   <ol id="css_sized_container" class="css_sized_container">
     <li>
       <label class="left" for="css_sized_container">CSS Sized Container and Handle</label>
-      <input type="checkbox" id="css_sized_container"/>
+      <input type="checkbox" />
     </li>
   </ol>
 
   <ol id="long_tiny" class="long_tiny">
     <li>
       <label class="left" for="long_tiny">Long and short labels</label>
-      <input type="checkbox" id="long_tiny"/>
+      <input type="checkbox" />
     </li>
   </ol>
 
