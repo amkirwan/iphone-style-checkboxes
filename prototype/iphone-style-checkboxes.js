@@ -42,7 +42,7 @@ var iPhoneStyle = Class.create({
 		this.currentOn = this.options.currentOn;
 		this.radioButtons = this.options.radioButtons;
 		
-		this.checkBoxes = [];
+		this.checkboxes = [];
 		this.clicking = null;
 		this.dragStartPosition = null;
 		this.activeCheckbox = null;
@@ -67,7 +67,7 @@ var iPhoneStyle = Class.create({
 			*/
 			
 			var checkBox = new iPhoneCheckBox(elt, this);
-			this.checkBoxes.push(checkBox);
+			this.checkboxes.push(checkBox);
 	
 	    if (this.resizeHandle) {
 				checkBox.resizeHandle();
@@ -151,7 +151,7 @@ var iPhoneStyle = Class.create({
 	
 	findCurrentOn: function() {
 		var box;
-		this.checkBoxes.each(function(cb) {
+		this.checkboxes.each(function(cb) {
 			if(cb.getContainer().hasClassName(this.currentOn))
 				box = cb;
 		}, this);
@@ -160,7 +160,7 @@ var iPhoneStyle = Class.create({
 	
 	getCheckboxObj: function(inputElt) {
 		var checkboxObj = null;
-		this.checkBoxes.each(function(checkbox) {
+		this.checkboxes.each(function(checkbox) {
 	    if(checkbox.getInputElt().identify() == inputElt.identify())
 	        checkboxObj = checkbox;
 	 	});
@@ -196,7 +196,7 @@ var iPhoneStyle = Class.create({
 						 "handleCenterClass: " + this.handleCenterClass + "\n" +
 						 "handleRightClass: " + this.handleRightClass + "\n" + 
 						 "currentOn: " + this.currentOn + "\n" +
-						 "checkBoxes:"  + this.checkBoxes 
+						 "checkboxes:"  + this.checkboxes 
 					 );
 	}
 
