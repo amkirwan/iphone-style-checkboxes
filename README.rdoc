@@ -1,15 +1,49 @@
 = iPhone Style Checkboxes
 
-Turn your checkboxes into iPhone-style binary switches.
+Turn your checkboxes into iPhone-style binary switches and also use the iPhone-style switches as radio buttons
+
+This works with the Prototype based javascript.
+
+Currently working on Jquery update 
 
 == Dependencies
 
-jQuery or Prototype + Scriptaculous
+Prototype + Scriptaculous
 
-== Use
+== Installation/Usage
 
-Please see jquery-demo.html or prototype-demo.html for example use.
+You need to include the following javascript files in the HEAD section of your HTML pages:
 
+  <script src="prototype/prototype.js" type="text/javascript" ></script>
+  <script src="prototype/scriptaculous.js" type="text/javascript" ></script>
+  <script src="prototype/iphone-style-checkboxes.js" type="text/javascript" ></script>
 
-Homepage:: http://tdreyno.github.com/iphone-style-checkboxes/
-License:: Copyright (c) 2009 Thomas Reynolds <mailto:tdreyno@gmail.com>, released under the MIT license
+== Examples
+
+Basic example usage. The only required option is to supply the id of the element that wraps the checkboxes.
+	new iPhoneStyle({ wrapper: 'first-list', radioButtons: true });
+
+Please see Prototype-demo.html for more examples.
+
+== Available Options
+	wrapper:
+	selector_or_elems:
+	duration:
+	checkedLabel:
+	uncheckedLabel:
+	resizeHandle:
+	resizeContainer:
+	background:
+	statusClass:
+	containerClass:
+	labelOnClass:
+	labelOffClass:
+	handleClass:
+	handleCenterClass:
+	handleRightClass:
+	currentOn:
+	radioButtons:
+
+== Updates
+
+Need to update the jquery js files and demo
