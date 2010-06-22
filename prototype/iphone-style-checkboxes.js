@@ -19,7 +19,8 @@ var iPhoneStyle = Class.create({
 		  handleCenterClass: 'iPhoneCheckHandleCenter',
 		  handleRightClass:  'iPhoneCheckHandleRight',
 			currentOn: 				 'current-on',
-		  statusChange: 		 null
+			statusChange: 		  Prototype.emptyFunction
+			
 		}, arguments[optionIndex] || {});
 		
 		this.wrapper = this.options.wrapper;
@@ -37,6 +38,7 @@ var iPhoneStyle = Class.create({
 		this.handleCenterClass = this.options.handleCenterClass;
 		this.handleRightClass = this.options.handleRightClass;
 		this.currentOn = this.options.currentOn;
+		this.statusChange = this.options.statusChange;
 		
 		this.checkboxes = [];
 		this.clicking = null;
@@ -173,6 +175,7 @@ var iPhoneStyle = Class.create({
       checkBox.offspan.setStyle({ 'marginRight': -p * checkBox.rightside + 'px' });
       checkBox.onspan.setStyle({ 'marginLeft': -(1 - p) * checkBox.rightside + 'px' });
     });
+		this.statusChange();
   },
 
 	toString: function() {
@@ -190,7 +193,7 @@ var iPhoneStyle = Class.create({
 						 "handleCenterClass: " + this.handleCenterClass + "\n" +
 						 "handleRightClass: " + this.handleRightClass + "\n" + 
 						 "currentOn: " + this.currentOn + "\n" +
-						 "checkboxes:"  + this.checkboxes 
+						 "checkboxes: "  + this.checkboxes
 					 );
 	}
 

@@ -41,6 +41,7 @@ Please see Prototype-demo.html for more examples.
 	handleCenterClass:
 	handleRightClass:
 	currentOn:
+	statusChange:
 
 == Updates
 
