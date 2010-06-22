@@ -20,14 +20,13 @@ You need to include the following javascript files in the HEAD section of your H
 
 == Examples
 
-Basic example usage. The only required option is to supply the id of the element that wraps the checkboxes.
-	new iPhoneStyle({ wrapper: 'first-list', radioButtons: true });
+Basic example usage. The only required option is to supply the id of the element that wraps either a set of checkboxes or radio buttons.
+	new iPhoneStyle({ wrapper: 'first-list' });
 
 Please see Prototype-demo.html for more examples.
 
 == Available Options
 	wrapper:
-	selector_or_elems:
 	duration:
 	checkedLabel:
 	uncheckedLabel:
@@ -42,7 +41,6 @@ Please see Prototype-demo.html for more examples.
 	handleCenterClass:
 	handleRightClass:
 	currentOn:
-	radioButtons:
 
 == Updates
 

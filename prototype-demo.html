@@ -39,8 +39,9 @@
 
   <script type="text/javascript" charset="utf-8">
     document.observe("dom:loaded", function() {
-      new iPhoneStyle({ wrapper: 'first-list', radioButtons: true });
-	  new iPhoneStyle({ wrapper: 'second-list', radioButtons: true });
+      new iPhoneStyle({ wrapper: 'first-list' });
+	  new iPhoneStyle({ wrapper: 'second-list' });
+	new iPhoneStyle({ wrapper: 'third-list' });
 	  new iPhoneStyle({ wrapper: 'on-off' });
       new iPhoneStyle({ wrapper: 'css_sized_container', resizeContainer: false, resizeHandle: false } );
       new iPhoneStyle({ wrapper: 'long_tiny', checkedLabel: 'Very Long Text', uncheckedLabel: 'Tiny' });
@@ -56,7 +57,7 @@
   
 </head>
 <body>
-  <h5 style="margin: 0">Acts as Radio Buttons</h5>
+  <h5 style="margin: 0">Checkbox as iPhone-Style</h5>
   <ol id="first-list" class="on_off" style="border: 1px solid #000">
     <li>
       <label class="left" for="on_off">Default</label>
@@ -74,7 +75,7 @@
     </li>
   </ol>
 
-  <h5 style="margin: 0; margin-top: 10px">Another Group of Acts as Radio Buttons</h5>
+  <h5 style="margin: 0; margin-top: 10px">Another Independent iPhone-Style Checkbox</h5>
   <ol id="second-list" class="on_off" style="border: 1px solid blue">
     <li>
       <label class="left" for="on_off">Default</label>
@@ -91,6 +92,13 @@
       <input type="checkbox" />
     </li>
   </ol>
+
+   <h5 style="margin: 0; margin-top: 10px">Another Group of Acts as Radio Buttons</h5>
+   <ol id="third-list" class="on_off" style="border: 1px solid blue">
+	 <li><input type="radio" name="group2" value="Water"> Water</li>
+	 <li><input type="radio" name="group2" value="Beer"> Beer</li>
+	 <li><input type="radio" name="group2" value="Wine" checked="checked">Wine</li>
+   </ol>
 
   <ol id="on-off" class="on_off" >
     <li>

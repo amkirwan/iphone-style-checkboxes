@@ -5,7 +5,6 @@ var iPhoneStyle = Class.create({
 		var optionIndex = 0;	
 		this.options = Object.extend({
 			wrapper:           '',
-			selector_or_elems: 'input[type=checkbox]',
 			duration:          200,
 		  checkedLabel:      'ON', 
 		  uncheckedLabel:    'OFF', 
@@ -20,12 +19,10 @@ var iPhoneStyle = Class.create({
 		  handleCenterClass: 'iPhoneCheckHandleCenter',
 		  handleRightClass:  'iPhoneCheckHandleRight',
 			currentOn: 				 'current-on',
-			radioButtons: 			false,
 		  statusChange: 		 null
 		}, arguments[optionIndex] || {});
 		
 		this.wrapper = this.options.wrapper;
-		this.selector_or_elems = this.options.selector_or_elems;
 		this.duration = this.options.duration;
 		this.checkedLabel = this.options.checkedLabel;
 		this.uncheckedLabel = this.options.uncheckedLabel;
@@ -40,7 +37,6 @@ var iPhoneStyle = Class.create({
 		this.handleCenterClass = this.options.handleCenterClass;
 		this.handleRightClass = this.options.handleRightClass;
 		this.currentOn = this.options.currentOn;
-		this.radioButtons = this.options.radioButtons;
 		
 		this.checkboxes = [];
 		this.clicking = null;
@@ -48,23 +44,22 @@ var iPhoneStyle = Class.create({
 		this.activeCheckbox = null;
 		this.iPhoneStyleObj = this;
 		
-	  if (Object.isString(this.selector_or_elems)) {
-	    this.elems = $$('#' + this.wrapper + ' ' + this.selector_or_elems);
-	  } else {
-	    this.elems = [this.selector_or_elems].flatten();
-	  }
+		if ($(this.wrapper).down('input[type=radio]')) {
+			this.elems = $$('#' + this.wrapper + ' ' + 'input[type=radio]');
+			this.radioButtons = true;
+		}
+		else if ($(this.wrapper).down('input[type=checkbox]')) {
+	    this.elems = $$('#' + this.wrapper + ' ' + 'input[type=checkbox]');
+			this.radioButtons = false;
+		} else {
+			return;
+		}
 		this.setup();
 	},
 	
 	setup: function() {
 		/* this is the obj setup in intialize */
 		this.elems.each(function(elt) {
-			/*
-			if (!elt.match('input[type=checkbox]'))
-				return;
-			if (elt.hasClassName(this.statusClass))
-				return;
-			*/
 			
 			var checkBox = new iPhoneCheckBox(elt, this);
 			this.checkboxes.push(checkBox);
@@ -181,8 +176,7 @@ var iPhoneStyle = Class.create({
   },
 
 	toString: function() {
-		return ( "selector_or_elems: " + this.selector_or_elems + "\n" +
-						 "duration: " + this.duration + "\n" +
+		return ( "duration: " + this.duration + "\n" +
 						 "checkedLabel: " + this.checkedLabel + "\n" +
 						 "uncheckedLabel: " + this.uncheckedLabel + "\n" +
 						 "resizeHandle: " + this.resizeHandle + "\n" +
