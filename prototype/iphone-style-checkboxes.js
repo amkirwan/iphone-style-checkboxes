@@ -175,7 +175,7 @@ var iPhoneStyle = Class.create({
       checkBox.offspan.setStyle({ 'marginRight': -p * checkBox.rightside + 'px' });
       checkBox.onspan.setStyle({ 'marginLeft': -(1 - p) * checkBox.rightside + 'px' });
     });
-		this.statusChange();
+		this.statusChange(this.iPhoneStyleObj);
   },
 
 	toString: function() {

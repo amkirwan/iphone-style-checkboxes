@@ -43,7 +43,7 @@
 	  new iPhoneStyle({ wrapper: 'second-list' });
 	new iPhoneStyle({ wrapper: 'third-list' });
 	  new iPhoneStyle({ wrapper: 'on-off' });
-	  new iPhoneStyle({ wrapper: 'status-change', statusChange: function() { alert('hello, world!');} })
+	  new iPhoneStyle({ wrapper: 'status-change', statusChange: function() { alert( "You clicked: " + this.activeCheckbox.inputElt);} })
       new iPhoneStyle({ wrapper: 'css_sized_container', resizeContainer: false, resizeHandle: false } );
       new iPhoneStyle({ wrapper: 'long_tiny', checkedLabel: 'Very Long Text', uncheckedLabel: 'Tiny' });
 
@@ -62,17 +62,17 @@
   <ol id="first-list" class="on_off" style="border: 1px solid #000">
     <li>
       <label class="left" for="on_off">Default</label>
-      <input type="checkbox"  />
+      <input id="1"type="checkbox"  />
     </li>
   
     <li>
-      <label class="left" for="on_off_on">Default On</label>
-      <input type="checkbox" checked="checked" />
+      <label  class="left" for="on_off_on">Default On</label>
+      <input id="2"type="checkbox" checked="checked" />
     </li>
 
     <li>
-      <label class="left" for="on_off">Default</label>
-      <input type="checkbox" />
+      <label  class="left" for="on_off">Default</label>
+      <input id="3" type="checkbox" />
     </li>
   </ol>
 
