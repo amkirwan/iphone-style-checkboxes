@@ -43,7 +43,7 @@
 	  new iPhoneStyle({ wrapper: 'second-list' });
 	new iPhoneStyle({ wrapper: 'third-list' });
 	  new iPhoneStyle({ wrapper: 'on-off' });
-	  new iPhoneStyle({ wrapper: 'status-change', statusChange: function() { alert( "You clicked: " + this.activeCheckbox.inputElt);} })
+	  new iPhoneStyle({ wrapper: 'status-change', statusChange: function(iPhoneStyle) { alert( "You clicked: " + iPhoneStyle);} })
       new iPhoneStyle({ wrapper: 'css_sized_container', resizeContainer: false, resizeHandle: false } );
       new iPhoneStyle({ wrapper: 'long_tiny', checkedLabel: 'Very Long Text', uncheckedLabel: 'Tiny' });
 

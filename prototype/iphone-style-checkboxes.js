@@ -193,7 +193,10 @@ var iPhoneStyle = Class.create({
 						 "handleCenterClass: " + this.handleCenterClass + "\n" +
 						 "handleRightClass: " + this.handleRightClass + "\n" + 
 						 "currentOn: " + this.currentOn + "\n" +
-						 "checkboxes: "  + this.checkboxes
+						 "checkboxes: "  + this.checkboxes + "\n" +
+						 "activeCheckbox: " + this.activeCheckbox + "\n" +
+					 	 "clicking" + this.clicking + "\n" +
+						 "dragStartPosition" + this.dragStartPosition
 					 );
 	}
 
